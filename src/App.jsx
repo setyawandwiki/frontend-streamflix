@@ -1,21 +1,17 @@
 import Navigations from "./components/Navigations";
-import Poster from "./components/Poster";
-import SuperHero from "./components/Superhero";
-import Trending from "./components/Trending";
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
+import Detail from "./pages/Detail";
 
 function App() {
   return (
     <>
-      <div className="">
-        <Navigations />
-      </div>
-      <Poster />
-      <div className="trending">
-        <Trending />
-      </div>
-      <div className="superhero">
-        <SuperHero />
-      </div>
+      <Routes>
+        <Route path="/" element={<Navigations />}>
+          <Route index element={<LandingPage />} />
+          <Route path="/detail/:id" element={<Detail />} />
+        </Route>
+      </Routes>
     </>
   );
 }
