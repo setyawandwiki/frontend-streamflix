@@ -70,6 +70,10 @@ const Trending = () => {
               </Link>
             </Col>
           ))}
+          <div className="d-flex my-5 justify-content-center">
+            <button className="btn btn-danger mx-5"> {"<"} </button>
+            <button className="btn btn-danger"> {">"} </button>
+          </div>
         </Row>
       </Container>
     </div>

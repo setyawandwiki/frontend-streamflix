@@ -1,5 +1,5 @@
 // import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -12,7 +12,6 @@ import { getUser } from "../features/user/userSlice";
 
 const Detail = () => {
   const { id } = useParams();
-  const [data, setData] = useState([]);
   const movie = useSelector((state) => state.movie);
   const order = useSelector((state) => state.order);
   const user = useSelector((state) => state.user);
@@ -66,21 +65,8 @@ const Detail = () => {
       })
     );
 
-    const arr = user.user.data.movie.filter(
-      (elem) => elem.name === param.detail[0]?.original_title
-    );
-
-    setData(arr);
-
     location.reload();
   };
-
-  console.log(data);
-  console.log(
-    user.user.data.movie.find(
-      (elem) => elem.name === movie.detail[0]?.original_title
-    )
-  );
 
   return (
     <>
@@ -112,14 +98,14 @@ const Detail = () => {
                 : movie.detail[0]?.vote_average > 3 &&
                   movie.detail[0]?.vote_average < 7
                 ? "Rp. 8.250"
-                : movie.detail[0]?.vote_average > 6 &&
-                  movie.detail[0]?.vote_average < 8
+                : movie?.detail[0]?.vote_average > 6 &&
+                  movie?.detail[0]?.vote_average < 8
                 ? "Rp. 16.350"
                 : "Rp. 21.250"}
             </p>
             <p>
               Already have it ?{" "}
-              {user.user.data.movie.find(
+              {user.user.data?.movie?.find(
                 (elem) => elem.name === movie.detail[0]?.original_title
               )
                 ? "Yes"
@@ -130,7 +116,7 @@ const Detail = () => {
               className="btn btn-primary"
               onClick={() => handleOrder(movie)}
               disabled={
-                user.user.data.movie.find(
+                user.user.data?.movie.find(
                   (elem) => elem.name === movie.detail[0]?.original_title
                 )
                   ? true
