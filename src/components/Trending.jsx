@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Card, Container, Row, Col, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getMovies } from "../features/movies/movieSlice";
 import { getUser } from "../features/user/userSlice";
 
@@ -10,6 +10,7 @@ const Trending = () => {
   const dispatch = useDispatch();
 
   const movie = useSelector((state) => state.movie);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(
@@ -21,6 +22,13 @@ const Trending = () => {
     dispatch(getMovies());
   }, []);
 
+  const handleCheck = () => {
+    if (!localStorage.getItem("token")) {
+      alert("you have login first");
+      navigate("/");
+    }
+  };
+
   return (
     <div>
       <Container>
@@ -29,7 +37,13 @@ const Trending = () => {
         <br />
         <Row>
           {movie.movies.results?.slice(0, 6).map((elem, index) => (
-            <Col md={4} className="movieWrapper" id="trending" key={index}>
+            <Col
+              md={4}
+              className="movieWrapper"
+              id="trending"
+              key={index}
+              onClick={handleCheck}
+            >
               <Link
                 to={`/detail/${elem.id}-${elem.title.split(" ").join("-")}`}
               >

@@ -21,6 +21,9 @@ const Detail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
     dispatch(getMovies());
     dispatch(getMovieDetail(id.split("-")[0]));
     dispatch(getCastMovie(id.split("-")[0]));
