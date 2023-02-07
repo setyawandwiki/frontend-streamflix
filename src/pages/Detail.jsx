@@ -52,7 +52,7 @@ const Detail = () => {
       })
     );
 
-    window.open(order.message.data.redirectUrl.redirect_url, "_blank");
+    window.open(order.message.data?.redirectUrl?.redirect_url, "_blank");
 
     dispatch(
       getUser({
@@ -63,8 +63,6 @@ const Detail = () => {
 
     location.reload();
   };
-
-  console.log(order.message.data.redirectUrl.redirect_url);
 
   return (
     <>
