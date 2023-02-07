@@ -1,5 +1,5 @@
 // import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -12,11 +12,13 @@ import { getUser } from "../features/user/userSlice";
 
 const Detail = () => {
   const { id } = useParams();
+  const [data, setData] = useState([]);
   const movie = useSelector((state) => state.movie);
+  const order = useSelector((state) => state.order);
+  const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const order = useSelector((state) => state.order);
 
   useEffect(() => {
     dispatch(getMovies());
@@ -61,8 +63,21 @@ const Detail = () => {
       })
     );
 
+    const arr = user.user.data.movie.filter(
+      (elem) => elem.name === param.detail[0]?.original_title
+    );
+
+    setData(arr);
+
     location.reload();
   };
+
+  console.log(data);
+  console.log(
+    user.user.data.movie.find(
+      (elem) => elem.name === movie.detail[0]?.original_title
+    )
+  );
 
   return (
     <>
@@ -99,11 +114,25 @@ const Detail = () => {
                 ? "Rp. 16.350"
                 : "Rp. 21.250"}
             </p>
-            <p>Already have it ? No</p>
+            <p>
+              Already have it ?{" "}
+              {user.user.data.movie.find(
+                (elem) => elem.name === movie.detail[0]?.original_title
+              )
+                ? "Yes"
+                : "No"}
+            </p>
             <button
               type="button"
               className="btn btn-primary"
               onClick={() => handleOrder(movie)}
+              disabled={
+                user.user.data.movie.find(
+                  (elem) => elem.name === movie.detail[0]?.original_title
+                )
+                  ? true
+                  : false
+              }
             >
               Buy
             </button>
