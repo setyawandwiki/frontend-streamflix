@@ -1,18 +1,43 @@
 import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
 
 const Navigations = () => {
   return (
-    <Navbar bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-        </Nav>
-      </Container>
-    </Navbar>
+    <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+      <div className="container">
+        <a className="navbar-brand text-white" href="#">
+          StreamFlix
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav d-flex justify-content-end w-100">
+            <li className="nav-item">
+              <a
+                className="nav-link text-white active"
+                aria-current="page"
+                href="#"
+              >
+                Login
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link text-white" href="#">
+                Register
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
