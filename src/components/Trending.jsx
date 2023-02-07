@@ -3,6 +3,7 @@ import { Card, Container, Row, Col, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getMovies } from "../features/movies/movieSlice";
+import { getUser } from "../features/user/userSlice";
 
 const Trending = () => {
   // const [movies, setMovies] = useState([]);
@@ -11,6 +12,12 @@ const Trending = () => {
   const movie = useSelector((state) => state.movie);
 
   useEffect(() => {
+    dispatch(
+      getUser({
+        id: localStorage.getItem("idUser"),
+        token: localStorage.getItem("token"),
+      })
+    );
     dispatch(getMovies());
   }, []);
 

@@ -1,0 +1,160 @@
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.signin__banner {
+  background: #3366ff;
+  height: 100vh;
+}
+
+#email,
+#username,
+#email {
+  border: 2px solid #c1c5d0;
+  opacity: 0.5;
+  border-radius: 12px;
+}
+
+#password,
+#passwordConfirm {
+  border: 2px solid #c1c5d0;
+  opacity: 0.5;
+  border-bottom-left-radius: 12px;
+  border-top-left-radius: 12px;
+}
+
+.input-group-text {
+  border: 2px solid #c1c5d0;
+  opacity: 0.5;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.sign-up__form--direction {
+  flex-direction: column;
+}
+
+.signin__form--logo {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+}
+
+.signin__box {
+  height: 100%;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signin__title {
+  font-size: 1.5rem;
+}
+
+.signin__input-field--eye {
+  border-left: none;
+  background: white;
+  color: blue;
+}
+
+.signin__input--pointer {
+  cursor: pointer;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #c1c5d0;
+}
+
+.signin__button {
+  width: 100%;
+  border-radius: 12px;
+  background: #3366ff !important;
+  height: 45px;
+  transition: 500ms;
+}
+
+.signin__button:hover {
+  background-color: #0235cd !important;
+}
+
+.signin__button {
+  box-shadow: 0 7px 10px #cad5f4;
+}
+
+input {
+  height: 50px;
+}
+
+/* .footer__Section--wetick ul li {
+    line-height: 30px;
+    color: #e5e5e5;
+    cursor: pointer;
+    transition: 500ms;
+  }
+  
+  .footer__Section--wetick ul li:hover {
+    color: #6d6868;
+  }
+  
+  .footer__section--links h1 {
+    position: relative;
+    bottom: -80%;
+  } */
+
+.fa-brands {
+  font-size: 1.5rem;
+  color: #e5e5e5;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* .footer__section--social i {
+    margin-right: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: 500ms;
+  }
+  
+  .footer__section--social i:hover {
+    color: #828181;
+  } */
+
+h1 {
+  color: #5a7184;
+}
+
+p {
+  text-decoration: none;
+}
+
+.signin__form--single--login {
+  height: 3.8rem;
+  width: 100%;
+}
+
+.signin__form--single--login a {
+  display: inline-block;
+  border: 1px solid blue;
+  padding: 0 2.5rem;
+  border-radius: 10px;
+  transition: 500ms;
+}
+
+.signin__form--single--login a:hover {
+  background: rgb(167, 164, 164);
+}
+
+.signin__form--single--login a img {
+  padding-top: 2px;
+  transform: translateY(50%);
+}
+
+@media (max-width: 546px) {
+  .signin__banner {
+    display: none !important;
+  }
+}

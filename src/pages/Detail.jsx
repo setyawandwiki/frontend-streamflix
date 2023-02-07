@@ -7,12 +7,16 @@ import {
   getMovieDetail,
   getMovies,
 } from "../features/movies/movieSlice";
+import { postOrder } from "../features/order/orderSlice";
+import { getUser } from "../features/user/userSlice";
 
 const Detail = () => {
   const { id } = useParams();
   const movie = useSelector((state) => state.movie);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const order = useSelector((state) => state.order);
 
   useEffect(() => {
     dispatch(getMovies());
@@ -29,6 +33,38 @@ const Detail = () => {
     dispatch(getCastMovie(id.split("-")[0]));
     navigate(`/detail/${param.id}-${param.title.split(" ").join("-")}`);
   };
+
+  const handleOrder = (param) => {
+    dispatch(
+      postOrder({
+        owner: localStorage.getItem("idUser"),
+        price:
+          param.detail[0]?.vote_average > 1 && param.detail[0]?.vote_average < 4
+            ? 3500
+            : param.detail[0]?.vote_average > 3 &&
+              param.detail[0]?.vote_average < 7
+            ? 8250
+            : param.detail[0]?.vote_average > 6 &&
+              param.detail[0]?.vote_average < 8
+            ? 16350
+            : 21250,
+        name: param.detail[0]?.original_title,
+      })
+    );
+
+    window.open(order.message.data.redirectUrl.redirect_url, "_blank");
+
+    dispatch(
+      getUser({
+        id: localStorage.getItem("idUser"),
+        token: localStorage.getItem("token"),
+      })
+    );
+
+    location.reload();
+  };
+
+  console.log(order.message.data.redirectUrl.redirect_url);
 
   return (
     <>
@@ -66,7 +102,11 @@ const Detail = () => {
                 : "Rp. 21.250"}
             </p>
             <p>Already have it ? No</p>
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => handleOrder(movie)}
+            >
               Buy
             </button>
             <h4>Simillar movie : </h4>
